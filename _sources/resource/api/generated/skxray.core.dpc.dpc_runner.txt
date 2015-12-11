@@ -1,0 +1,6 @@
+skxray.core.dpc.dpc_runner
+==========================
+
+.. currentmodule:: skxray.core.dpc
+
+.. autofunction:: dpc_runner

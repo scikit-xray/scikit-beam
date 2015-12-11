@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tutorial with Examples &mdash; scikit-xray 0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="scikit-xray 0 documentation" href="index.html" />
+    <link rel="next" title="Differential Phase Contrast" href="tutorial/dpc_demo.html" />
+    <link rel="prev" title="Logging" href="resource/dev_guide/logging.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          scikit-xray</a>
+        <span class="navbar-text navbar-version pull-left"><b>0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="#">Tutorial</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to scikit-xray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing scikit-xray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html#updating-your-installation">Updating Your Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What&#8217;s new</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource/api/index.html">Complete Reference (API)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resource/dev_guide/index.html">Development Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Tutorial with Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/dpc_demo.html">Differential Phase Contrast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/speckle-plotting.html">Plotting helper functions for Speckle analysis &#8211; <code class="docutils literal"><span class="pre">xray_vision.mpl_plotting.speckle</span></code> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/XPCS_fitting_with_lmfit.html">XPCS fitting with lmfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/Multi_tau_one_time_correlation_example.html">One Time Correlation Example for NIPA_GEL 250K¶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/Generate_ROI_labeled_arrays.html">Generate Region of Interests (ROI) labeled arrays for simple shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/recip_example.html">This is an example of using real experimental data to plot the HK plane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/plot_xrf_spectrum.html">Using X-ray fluorescence information in scikit-xray</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Tutorial with Examples</a><ul>
+<li><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="tutorial-with-examples">
+<span id="tutorial"></span><h1>Tutorial with Examples<a class="headerlink" href="#tutorial-with-examples" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="basic-usage">
+<h2>Basic Usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/dpc_demo.html">Differential Phase Contrast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/speckle-plotting.html">Plotting helper functions for Speckle analysis &#8211; <code class="docutils literal"><span class="pre">xray_vision.mpl_plotting.speckle</span></code> module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#easily-switch-between-interactive-and-static-matplotlib-plots">Easily switch between interactive and static matplotlib plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#where-does-this-data-come-from">Where does this data come from?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#load-the-data">Load the data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#define-the-image-metadata">Define the image metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#let-s-pretend-like-this-is-data-from-5-different-points-in-the-sample">Let&#8217;s pretend like this is data from 5 different points in the sample</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#plot-the-masks">Plot the masks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#oops-the-masks-are-reversed">Oops, the masks are reversed!</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/speckle-plotting.html#there-we-go-that-looks-better">There we go. That looks better!</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#let-s-look-at-the-total-dataset-pre-and-post-masking">Let&#8217;s look at the total dataset pre- and post-masking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#use-the-skxray-core-roi-module-to-easily-create-ring-rois">Use the <code class="docutils literal"><span class="pre">skxray.core.roi</span></code> module to easily create ring ROIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#let-s-look-at-what-these-ring-rois-look-like">Let&#8217;s look at what these ring ROIs look like.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#these-rois-are-looking-good-let-s-make-sure-that-each-point-in-the-sample-is-behaving-similarly">These ROIs are looking good! Let&#8217;s make sure that each point in the sample is behaving similarly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#use-the-skxray-core-roi-module-to-compute-the-mean-intensity-for-each-roi-for-each-sample">Use the <code class="docutils literal"><span class="pre">skxray.core.roi</span> <span class="pre">module</span></code> to compute the mean intensity for each ROI for each sample.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#let-s-look-at-the-data-in-this-dataframe">Let&#8217;s look at the data in this dataframe.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#things-look-good-let-s-probe-the-return-value-of-the-mean-intensity-plotter-function">Things look good! Let&#8217;s probe the return value of the <code class="docutils literal"><span class="pre">mean_intensity_plotter</span></code> function</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/speckle-plotting.html#if-you-are-using-matplotlib-in-interactive-mode-go-look-at-the-above-figure-again-the-left-most-like-in-the-top-plot-should-now-be-pink">If you are using matplotlib in interactive mode, go look at the above figure again. The left-most like in the top plot should now be pink!</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#at-this-point-this-dataset-looks-fine-to-illustrate-how-we-would-go-about-cleaning-this-data-if-one-of-the-points-in-the-sample-was-not-good-we-have-to-manipulate-the-data-let-s-do-that-now">At this point, this dataset looks fine. To illustrate how we would go about cleaning this data if one of the points in the sample was not &#8220;good&#8221;, we have to manipulate the data. Let&#8217;s do that now.</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/speckle-plotting.html#oh-no-there-seems-to-be-an-issue-with-sample-point-2-let-s-remove-that-from-the-image-list">Oh no! There seems to be an issue with &#8220;sample_point_2&#8221;. Let&#8217;s remove that from the image list</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#very-short-pandas-tutorial-drop-a-column">Very short pandas tutorial: drop a column</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#very-short-pandas-tutorial-drop-a-row">Very short pandas tutorial: drop a row</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#ok-so-let-s-drop-the-bad-data-for-point-2">Ok, so let&#8217;s drop the bad data for &#8220;point_2&#8221;</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#yay-no-more-point-2">Yay, no more point_2!</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#now-we-need-to-recombine-the-data-that-is-currently-stored-in-the-dataframe">Now we need to recombine the data that is currently stored in the dataframe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#circular-average-radial-integration-of-the-intensity-distribution-of-the-image-data">Circular average(radial integration) of the intensity distribution of the image data.</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/speckle-plotting.html#demonstrate-that-all-keys-in-bad-data-are-no-longer-in-masked-data">Demonstrate that all keys in <code class="docutils literal"><span class="pre">bad_data</span></code> are no longer in <code class="docutils literal"><span class="pre">masked_data</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/speckle-plotting.html#compute-the-average-image-from-the-remaining-data-in-masked-data">Compute the average image from the remaining data in <code class="docutils literal"><span class="pre">masked_data</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#data-for-graphical-representation-of-pixels-variation-over-time-for-required-roi">Data for graphical representation of pixels variation over time for required ROI.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/speckle-plotting.html#this-will-provide-intensities-of-the-roi-s-of-the-labeled-array-according-to-the-pixel-list">This will provide intensities of the ROI&#8217;s of the labeled array according to the pixel list</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/XPCS_fitting_with_lmfit.html">XPCS fitting with lmfit</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/XPCS_fitting_with_lmfit.html#easily-switch-between-interactive-and-static-matplotlib-plots">Easily switch between interactive and static matplotlib plots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/XPCS_fitting_with_lmfit.html#this-data-provided-by-dr-andrei-fluerasu">This data provided by Dr. Andrei Fluerasu</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/XPCS_fitting_with_lmfit.html#create-the-rings-mask">Create the Rings Mask</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tutorial/XPCS_fitting_with_lmfit.html#convert-the-edge-values-of-the-rings-to-q-reciprocal-space">Convert the edge values of the rings to q ( reciprocal space)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/XPCS_fitting_with_lmfit.html#create-a-labeled-array-using-roi-rings">Create a labeled array using roi.rings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/XPCS_fitting_with_lmfit.html#find-the-experimental-auto-correlation-functions">Find the experimental auto correlation functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/XPCS_fitting_with_lmfit.html#do-the-fitting">Do the fitting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/Multi_tau_one_time_correlation_example.html">One Time Correlation Example for NIPA_GEL 250K¶</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Multi_tau_one_time_correlation_example.html#one-time-correlation">One Time Correlation¶</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Multi_tau_one_time_correlation_example.html#multi-tau-scheme">Multi-tau Scheme</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Multi_tau_one_time_correlation_example.html#generate-rois">Generate ROIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Multi_tau_one_time_correlation_example.html#plot-the-rois">Plot the ROIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Multi_tau_one_time_correlation_example.html#use-the-1-time-correlation-function-in-scikit-xray">Use the 1-time correlation function in scikit-xray</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Multi_tau_one_time_correlation_example.html#plot-the-one-time-correlation-functions">Plot the one time correlation functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/Generate_ROI_labeled_arrays.html">Generate Region of Interests (ROI) labeled arrays for simple shapes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Generate_ROI_labeled_arrays.html#easily-switch-between-interactive-and-static-matplotlib-plots">Easily switch between interactive and static matplotlib plots</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/Generate_ROI_labeled_arrays.html#rectangle-region-of-interests">Rectangle region of interests.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorial/Generate_ROI_labeled_arrays.html#draw-annual-ring-shaped-regions-of-interest">Draw annual (ring-shaped) regions of interest</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Generate_ROI_labeled_arrays.html#test-when-there-is-same-spacing-between-rings">Test when there is same spacing between rings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Generate_ROI_labeled_arrays.html#test-when-there-is-different-spacing-between-rings">Test when there is different spacing between rings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Generate_ROI_labeled_arrays.html#test-when-there-is-no-spacing-between-rings">Test when there is no spacing between rings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Generate_ROI_labeled_arrays.html#generate-a-roi-of-segmented-rings">Generate a ROI of Segmented Rings¶</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/Generate_ROI_labeled_arrays.html#generate-a-roi-of-pies">Generate a ROI of Pies</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/recip_example.html">This is an example of using real experimental data to plot the HK plane</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/recip_example.html#define-some-metadata">define some metadata</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/recip_example.html#load-the-data">Load the data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/plot_xrf_spectrum.html">Using X-ray fluorescence information in scikit-xray</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/plot_xrf_spectrum.html#inline-plot">Inline plot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/plot_xrf_spectrum.html#import-element-library">Import Element library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/plot_xrf_spectrum.html#initiate-element-object">Initiate Element object</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/plot_xrf_spectrum.html#output-a-given-emission-line">Output a given emission line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/plot_xrf_spectrum.html#output-all-the-emission-lines">Output all the emission lines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/plot_xrf_spectrum.html#output-all-the-fluorescence-cross-sections-at-given-incident-energy">Output all the fluorescence cross sections at given incident energy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/plot_xrf_spectrum.html#import-functions-to-plot-emission-lines-and-spectrum">Import functions to plot emission lines, and spectrum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/plot_xrf_spectrum.html#plot-spectrum-for-element-cu">Plot spectrum for element Cu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial/plot_xrf_spectrum.html#plot-spectrum-for-element-gd">Plot spectrum for element Gd</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/tutorial.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014-2015 Brookhaven National Lab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

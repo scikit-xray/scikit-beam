@@ -1,0 +1,6 @@
+skxray.core.feature.filter_peak_height
+======================================
+
+.. currentmodule:: skxray.core.feature
+
+.. autofunction:: filter_peak_height

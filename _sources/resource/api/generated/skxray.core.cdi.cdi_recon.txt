@@ -1,0 +1,6 @@
+skxray.core.cdi.cdi_recon
+=========================
+
+.. currentmodule:: skxray.core.cdi
+
+.. autofunction:: cdi_recon

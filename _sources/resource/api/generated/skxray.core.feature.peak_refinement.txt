@@ -1,0 +1,6 @@
+skxray.core.feature.peak_refinement
+===================================
+
+.. currentmodule:: skxray.core.feature
+
+.. autofunction:: peak_refinement

@@ -1,0 +1,6 @@
+skxray.core.feature.filter_n_largest
+====================================
+
+.. currentmodule:: skxray.core.feature
+
+.. autofunction:: filter_n_largest

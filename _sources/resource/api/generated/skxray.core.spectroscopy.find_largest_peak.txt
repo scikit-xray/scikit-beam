@@ -1,0 +1,6 @@
+skxray.core.spectroscopy.find_largest_peak
+==========================================
+
+.. currentmodule:: skxray.core.spectroscopy
+
+.. autofunction:: find_largest_peak

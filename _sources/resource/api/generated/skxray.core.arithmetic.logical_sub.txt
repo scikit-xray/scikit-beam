@@ -1,0 +1,6 @@
+skxray.core.arithmetic.logical_sub
+==================================
+
+.. currentmodule:: skxray.core.arithmetic
+
+.. autofunction:: logical_sub

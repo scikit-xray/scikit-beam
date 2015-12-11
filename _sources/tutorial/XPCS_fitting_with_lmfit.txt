@@ -1,0 +1,282 @@
+
+XPCS fitting with lmfit
+=======================
+
+The experimentatl X-ray Photon Correlation Sepectroscopy(XPCS) data are
+fitted with Intermediate Scattering Factor(ISF) using lmfit Model
+(http://lmfit.github.io/lmfit-py/model.html)
+
+.. code:: python
+
+    # analysis tools from scikit-xray (https://github.com/scikit-xray/scikit-xray/tree/master/skxray/core)
+    import skxray.core.roi as roi
+    import skxray.core.correlation as corr
+    import skxray.core.utils as utils
+    
+    from lmfit import minimize, Parameters, Model
+    
+    # plotting tools from xray_vision (https://github.com/Nikea/xray-vision/blob/master/xray_vision/mpl_plotting/roi.py)
+    import xray_vision.mpl_plotting as mpl_plot  
+    
+    import numpy as np
+    import os, sys
+    import zipfile
+    
+    import matplotlib as mpl
+    import matplotlib.pyplot as plt
+    from matplotlib.ticker import MaxNLocator
+    from matplotlib.colors import LogNorm
+
+
+.. parsed-literal::
+
+    :0: FutureWarning: IPython widgets are experimental and may change in the future.
+
+
+Easily switch between interactive and static matplotlib plots
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code:: python
+
+    interactive_mode = False
+    
+    if interactive_mode:
+        %matplotlib notebook
+    else:
+        %matplotlib inline
+    
+    backend = mpl.get_backend()
+
+This data provided by Dr. Andrei Fluerasu
+-----------------------------------------
+
+L. Li, P. Kwasniewski, D. Oris, L Wiegart, L. Cristofolini, C. Carona
+and A. Fluerasu , "Photon statistics and speckle visibility spectroscopy
+with partially coherent x-rays" J. Synchrotron Rad., vol 21, p
+1288-1295, 2014.
+
+.. code:: python
+
+    #folder = "/Volumes/Data/BeamLines/CHX/Luxi_description_files_for_duke/Duke_data"
+    folder = os.path.join(*__file__.split(os.sep)[:-1])
+    
+    #  Get the data and the mask 
+    try:
+        duke_data = np.load(os.path.join(folder, "duke_data", "duke_data.npy"))
+        N_mask = np.load(os.path.join(folder, "duke_data", "N_mask.npy"))
+    except IOError:
+        zipfile.ZipFile(os.path.join(folder, "duke_data.zip")).extractall()
+        duke_data = np.load(os.path.join(folder, "duke_data", "duke_data.npy"))
+        N_mask = np.load(os.path.join(folder, "duke_data", "N_mask.npy"))
+    
+    #  get the average image
+    avg_img = np.average(duke_data, axis=0)
+    
+    # plot the average image data after masking
+    plt.figure()
+    plt.imshow(N_mask*avg_img, vmax=1e0, cmap="Dark2" )
+    plt.title("Averaged masked data for Duke Silica Gel ")
+    plt.colorbar()
+    plt.show()
+
+
+
+.. image:: XPCS_fitting_with_lmfit_files/XPCS_fitting_with_lmfit_5_0.png
+
+
+Create the Rings Mask
+---------------------
+
+Use the skxray.core.roi module to create Ring ROIs (ROI Mask)¶
+(https://github.com/scikit-xray/scikit-xray/blob/master/skxray/core/roi.py)
+
+.. code:: python
+
+    inner_radius = 24  # radius of the first ring
+    width = 1        # width of each ring
+    spacing = 0      # no spacing between rings
+    num_rings = 5    # number of rings
+    center = (133, 143)   # center of the spckle pattern
+    
+    #  find the edges of the required rings
+    edges = roi.ring_edges(inner_radius, width, spacing, num_rings)
+    edges
+
+
+
+
+.. parsed-literal::
+
+    array([[ 24.,  25.],
+           [ 25.,  26.],
+           [ 26.,  27.],
+           [ 27.,  28.],
+           [ 28.,  29.]])
+
+
+
+Convert the edge values of the rings to q ( reciprocal space)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: python
+
+    dpix = 0.055  # The physical size of the pixels
+    
+    lambda_ = 1.5498  # wavelength of the X-rays
+    Ldet = 2200.   #   # detector to sample distance
+    
+    two_theta = utils.radius_to_twotheta(Ldet, edges*dpix)
+    q_val = utils.twotheta_to_q(two_theta, lambda_)
+    
+    q_val
+
+
+
+
+.. parsed-literal::
+
+    array([[ 0.00243251,  0.00253387],
+           [ 0.00253387,  0.00263522],
+           [ 0.00263522,  0.00273658],
+           [ 0.00273658,  0.00283793],
+           [ 0.00283793,  0.00293929]])
+
+
+
+.. code:: python
+
+    q_ring = np.mean(q_val, axis=1)
+    q_ring
+
+
+
+
+.. parsed-literal::
+
+    array([ 0.00248319,  0.00258455,  0.0026859 ,  0.00278726,  0.00288861])
+
+
+
+Create a labeled array using roi.rings
+--------------------------------------
+
+.. code:: python
+
+    rings = roi.rings(edges, center, avg_img.shape)
+    
+    mask_data2 = N_mask*duke_data[0:4999]
+    
+    ring_mask = rings*N_mask
+    
+    # plot the figure
+    fig, axes = plt.subplots()
+    axes.set_title("Ring Mask")
+    im = mpl_plot.show_label_array(axes, ring_mask, cmap="Dark2")
+    plt.show()
+
+
+
+
+.. parsed-literal::
+
+    <IPython.core.display.Javascript object>
+
+
+
+.. raw:: html
+
+    <img src="data:image/png;base64,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">
+
+
+Find the experimental auto correlation functions
+------------------------------------------------
+
+Use the skxray.core.correlation module
+(https://github.com/scikit-xray/scikit-xray/blob/master/skxray/core/correlation.py)
+
+.. code:: python
+
+    num_levels = 7
+    num_bufs = 8
+    
+    g2, lag_steps = corr.multi_tau_auto_corr(num_levels, num_bufs, ring_mask,
+                                                 mask_data2)
+    
+    exposuretime=0.001;
+    deadtime=60e-6;
+    timeperframe = exposuretime+deadtime
+    lags = lag_steps*timeperframe
+    
+    roi_names = ['gray', 'orange', 'brown', 'red', 'green']
+    
+    
+    fig, axes = plt.subplots(num_rings, sharex=True, figsize=(5, 14))
+    axes[num_rings-1].set_xlabel("lags")
+    for i, roi_color in zip(range(num_rings), roi_names):
+        axes[i].set_ylabel("g2") 
+        axes[i].set_title(" Q ring value " + str(q_ring[i]))
+        axes[i].semilogx(lags, g2[:, i], 'o', markerfacecolor=roi_color, markersize=6)
+        axes[i].set_ylim(bottom=1, top=np.max(g2[1:, i]))
+    plt.show()
+
+
+
+.. image:: XPCS_fitting_with_lmfit_files/XPCS_fitting_with_lmfit_14_0.png
+
+
+Do the fitting
+--------------
+
+One time correlation data is fitted using the model in
+skxray.core.correlation module (auto\_corr\_scat\_factor)
+(https://github.com/scikit-xray/scikit-xray/blob/master/skxray/core/correlation.py)
+
+.. code:: python
+
+    mod = Model(corr.auto_corr_scat_factor)
+
+.. code:: python
+
+    out1 = mod.eval(lags=lags, beta=0.2234, relaxation_rate = 6.2567,  baseline=1.0)
+    
+    result1 = mod.fit(out1, lags=lags, beta=0.2230, relaxation_rate = 6.2500,  baseline=1.0)
+    plt.figure()
+    plt.semilogx(lags, g2[:, 0], 'ro')
+    plt.semilogx(lags, result1.best_fit, '-b')
+    plt.ylim(1.0, 1.3)
+    plt.title("Q ring value "+str(q_ring[0]))
+    plt.show()
+
+
+
+.. image:: XPCS_fitting_with_lmfit_files/XPCS_fitting_with_lmfit_17_0.png
+
+
+.. code:: python
+
+    out2 = mod.eval(lags=lags, beta=0.2234, relaxation_rate=6.9879, baseline=1.000)
+    
+    result2 = mod.fit(out2, lags=lags, beta=0.22456, relaxation_rate=6.98789, beseline=1.00)
+    plt.figure()
+    plt.semilogx(lags, g2[:, 2], 'ro')
+    plt.semilogx(lags, result2.best_fit, '-b')
+    plt.ylim(1., 1.3)
+    plt.title("Q ring value "+ str(q_ring[2]))
+    plt.show()
+
+
+
+.. image:: XPCS_fitting_with_lmfit_files/XPCS_fitting_with_lmfit_18_0.png
+
+
+.. code:: python
+
+    import skxray
+    print(skxray.__version__)
+
+
+.. parsed-literal::
+
+    0.0.4+105.ge27b978
+
+

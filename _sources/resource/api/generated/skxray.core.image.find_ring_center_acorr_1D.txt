@@ -1,0 +1,6 @@
+skxray.core.image.find_ring_center_acorr_1D
+===========================================
+
+.. currentmodule:: skxray.core.image
+
+.. autofunction:: find_ring_center_acorr_1D

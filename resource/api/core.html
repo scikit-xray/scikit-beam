@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>core subpackge &mdash; scikit-xray 0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootswatch-3.3.4/spacelab/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="scikit-xray 0 documentation" href="../../index.html" />
+    <link rel="up" title="Complete Reference (API)" href="index.html" />
+    <link rel="next" title="skxray.core.cdi.cdi_recon" href="generated/skxray.core.cdi.cdi_recon.html" />
+    <link rel="prev" title="fluorescence Module" href="fluorescence.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          scikit-xray</a>
+        <span class="navbar-text navbar-version pull-left"><b>0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../../tutorial.html">Tutorial</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction to scikit-xray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installing scikit-xray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html#updating-your-installation">Updating Your Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../whats_new.html">What&#8217;s new</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Complete Reference (API)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_guide/index.html">Development Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial.html">Tutorial with Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/dpc_demo.html">Differential Phase Contrast</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/speckle-plotting.html">Plotting helper functions for Speckle analysis &#8211; <code class="docutils literal"><span class="pre">xray_vision.mpl_plotting.speckle</span></code> module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/XPCS_fitting_with_lmfit.html">XPCS fitting with lmfit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/Multi_tau_one_time_correlation_example.html">One Time Correlation Example for NIPA_GEL 250K¶</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/Generate_ROI_labeled_arrays.html">Generate Region of Interests (ROI) labeled arrays for simple shapes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/recip_example.html">This is an example of using real experimental data to plot the HK plane</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/plot_xrf_spectrum.html">Using X-ray fluorescence information in scikit-xray</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#"><code class="docutils literal"><span class="pre">core</span></code> subpackge</a><ul>
+<li><a class="reference internal" href="#scientific-algorithms">Scientific Algorithms</a></li>
+<li><a class="reference internal" href="#helper-classes">Helper Classes</a><ul>
+<li><a class="reference internal" href="#dictionary-like-classes">Dictionary-like classes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#image-warping-functions">Image warping functions</a></li>
+<li><a class="reference internal" href="#peak">Peak</a><ul>
+<li><a class="reference internal" href="#peak-fitting">Peak fitting</a></li>
+<li><a class="reference internal" href="#peak-finding">Peak finding</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#image-pre-processing">Image pre-processing</a></li>
+<li><a class="reference internal" href="#histograms-and-integration">Histograms and Integration</a><ul>
+<li><a class="reference internal" href="#binning">Binning</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#helper-functions">Helper functions</a></li>
+<li><a class="reference internal" href="#generating-rois">Generating ROIs</a></li>
+<li><a class="reference internal" href="#physical-relations">Physical relations</a></li>
+<li><a class="reference internal" href="#boolean-logic">Boolean Logic</a></li>
+<li><a class="reference internal" href="#calibration">Calibration</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="core-subpackge">
+<h1><code class="xref py py-mod docutils literal"><span class="pre">core</span></code> subpackge<a class="headerlink" href="#core-subpackge" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="scientific-algorithms">
+<h2>Scientific Algorithms<a class="headerlink" href="#scientific-algorithms" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/skxray.core.cdi.cdi_recon.html#skxray.core.cdi.cdi_recon" title="skxray.core.cdi.cdi_recon"><code class="xref py py-obj docutils literal"><span class="pre">cdi.cdi_recon</span></code></a>(diffracted_pattern,&nbsp;...[,&nbsp;...])</td>
+<td>Run reconstruction with difference map algorithm.</td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">correlation.multi_tau_auto_corr</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/skxray.core.dpc.recon.html#skxray.core.dpc.recon" title="skxray.core.dpc.recon"><code class="xref py py-obj docutils literal"><span class="pre">dpc.recon</span></code></a>(gx,&nbsp;gy,&nbsp;scan_xstep,&nbsp;scan_ystep[,&nbsp;...])</td>
+<td>Reconstruct the final phase image.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/skxray.core.dpc.dpc_runner.html#skxray.core.dpc.dpc_runner" title="skxray.core.dpc.dpc_runner"><code class="xref py py-obj docutils literal"><span class="pre">dpc.dpc_runner</span></code></a>(ref,&nbsp;image_sequence,&nbsp;...[,&nbsp;...])</td>
+<td>Controller function to run the whole Differential Phase Contrast (DPC) imaging calculation.</td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">recip.process_to_q</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="helper-classes">
+<h2>Helper Classes<a class="headerlink" href="#helper-classes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dictionary-like-classes">
+<h3>Dictionary-like classes<a class="headerlink" href="#dictionary-like-classes" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.MD_dict</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.verbosedict</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.RCParamDict</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="image-warping-functions">
+<h2>Image warping functions<a class="headerlink" href="#image-warping-functions" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.img_to_relative_xyi</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.radial_grid</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.angle_grid</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="peak">
+<h2>Peak<a class="headerlink" href="#peak" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="peak-fitting">
+<h3>Peak fitting<a class="headerlink" href="#peak-fitting" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/skxray.core.feature.peak_refinement.html#skxray.core.feature.peak_refinement" title="skxray.core.feature.peak_refinement"><code class="xref py py-obj docutils literal"><span class="pre">feature.peak_refinement</span></code></a>(x,&nbsp;y,&nbsp;cands,&nbsp;window,&nbsp;...)</td>
+<td>Refine candidate locations</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/skxray.core.feature.refine_quadratic.html#skxray.core.feature.refine_quadratic" title="skxray.core.feature.refine_quadratic"><code class="xref py py-obj docutils literal"><span class="pre">feature.refine_quadratic</span></code></a>(x,&nbsp;y[,&nbsp;Rval_thresh])</td>
+<td>Attempts to refine the peaks by fitting to a quadratic function.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/skxray.core.feature.refine_log_quadratic.html#skxray.core.feature.refine_log_quadratic" title="skxray.core.feature.refine_log_quadratic"><code class="xref py py-obj docutils literal"><span class="pre">feature.refine_log_quadratic</span></code></a>(x,&nbsp;y[,&nbsp;Rval_thresh])</td>
+<td>Attempts to refine the peaks by fitting a quadratic to the log of the y-data.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/skxray.core.feature.filter_n_largest.html#skxray.core.feature.filter_n_largest" title="skxray.core.feature.filter_n_largest"><code class="xref py py-obj docutils literal"><span class="pre">feature.filter_n_largest</span></code></a>(y,&nbsp;cands,&nbsp;N)</td>
+<td>Filters the N largest candidate peaks</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/skxray.core.feature.filter_peak_height.html#skxray.core.feature.filter_peak_height" title="skxray.core.feature.filter_peak_height"><code class="xref py py-obj docutils literal"><span class="pre">feature.filter_peak_height</span></code></a>(y,&nbsp;cands,&nbsp;thresh)</td>
+<td>Filter to remove candidate that are too small.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="peak-finding">
+<h3>Peak finding<a class="headerlink" href="#peak-finding" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/skxray.core.image.find_ring_center_acorr_1D.html#skxray.core.image.find_ring_center_acorr_1D" title="skxray.core.image.find_ring_center_acorr_1D"><code class="xref py py-obj docutils literal"><span class="pre">image.find_ring_center_acorr_1D</span></code></a>(input_image)</td>
+<td>Find the pixel-resolution center of a set of concentric rings.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/skxray.core.spectroscopy.find_largest_peak.html#skxray.core.spectroscopy.find_largest_peak" title="skxray.core.spectroscopy.find_largest_peak"><code class="xref py py-obj docutils literal"><span class="pre">spectroscopy.find_largest_peak</span></code></a>(x,&nbsp;y[,&nbsp;window])</td>
+<td>Finds and estimates the location, width, and height of the largest peak.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="image-pre-processing">
+<h2>Image pre-processing<a class="headerlink" href="#image-pre-processing" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.subtract_reference_images</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="histograms-and-integration">
+<h2>Histograms and Integration<a class="headerlink" href="#histograms-and-integration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="binning">
+<h3>Binning<a class="headerlink" href="#binning" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.bin_1D</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.wedge_integration</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.grid3d</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="helper-functions">
+<h2>Helper functions<a class="headerlink" href="#helper-functions" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.pairwise</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.geometric_series</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.multi_tau_lags</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.bin_edges</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.bin_edges_to_centers</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="generating-rois">
+<h2>Generating ROIs<a class="headerlink" href="#generating-rois" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">roi.roi_kymograph</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">roi.circular_average</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">roi.combine_mean_intensity</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">roi.mean_intensity</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">roi.mean_intensity_sets</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">roi.roi_pixel_values</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">roi.roi_max_counts</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">roi.segmented_rings</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">roi.ring_edges</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">roi.rings</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">roi.rectangles</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="physical-relations">
+<h2>Physical relations<a class="headerlink" href="#physical-relations" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.q_to_d</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.d_to_q</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.q_to_twotheta</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.twotheta_to_q</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.radius_to_twotheta</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">recip.hkl_to_q</span></code></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">recip.calibrated_pixels_to_q</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="boolean-logic">
+<h2>Boolean Logic<a class="headerlink" href="#boolean-logic" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><a class="reference internal" href="generated/skxray.core.arithmetic.logical_nand.html#skxray.core.arithmetic.logical_nand" title="skxray.core.arithmetic.logical_nand"><code class="xref py py-obj docutils literal"><span class="pre">arithmetic.logical_nand</span></code></a>(x1,&nbsp;x2[,&nbsp;out])</td>
+<td>Computes the truth value of NOT (x1 AND x2) element wise.</td>
+</tr>
+<tr class="row-even"><td><a class="reference internal" href="generated/skxray.core.arithmetic.logical_nor.html#skxray.core.arithmetic.logical_nor" title="skxray.core.arithmetic.logical_nor"><code class="xref py py-obj docutils literal"><span class="pre">arithmetic.logical_nor</span></code></a>(x1,&nbsp;x2[,&nbsp;out])</td>
+<td>Compute truth value of NOT (x1 OR x2)) element wise.</td>
+</tr>
+<tr class="row-odd"><td><a class="reference internal" href="generated/skxray.core.arithmetic.logical_sub.html#skxray.core.arithmetic.logical_sub" title="skxray.core.arithmetic.logical_sub"><code class="xref py py-obj docutils literal"><span class="pre">arithmetic.logical_sub</span></code></a>(x1,&nbsp;x2[,&nbsp;out])</td>
+<td>Compute truth value of x1 AND (NOT (x1 AND x2)) element wise.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="calibration">
+<h2>Calibration<a class="headerlink" href="#calibration" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="longtable docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.estimate_d_blind</span></code></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><code class="xref py py-obj docutils literal"><span class="pre">utils.refine_center</span></code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="../../_sources/resource/api/core.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014-2015 Brookhaven National Lab.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

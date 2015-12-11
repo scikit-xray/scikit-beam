@@ -1,0 +1,6 @@
+skxray.core.dpc.recon
+=====================
+
+.. currentmodule:: skxray.core.dpc
+
+.. autofunction:: recon

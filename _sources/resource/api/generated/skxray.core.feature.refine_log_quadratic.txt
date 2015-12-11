@@ -1,0 +1,6 @@
+skxray.core.feature.refine_log_quadratic
+========================================
+
+.. currentmodule:: skxray.core.feature
+
+.. autofunction:: refine_log_quadratic

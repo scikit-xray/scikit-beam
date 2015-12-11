@@ -1,0 +1,6 @@
+skxray.core.arithmetic.logical_nor
+==================================
+
+.. currentmodule:: skxray.core.arithmetic
+
+.. autofunction:: logical_nor
